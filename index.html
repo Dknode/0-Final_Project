@@ -19,30 +19,30 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
   <link rel="stylesheet" href="css/customize.css">
-<script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+  <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
   <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
   <style>
-  #map_1 {
-    height: 750px;
-  }
+    #map_1 {
+      height: 750px;
+    }
   </style>
   <style>
-  #map_2 {
-    height: 750px;
-  }
+    #map_2 {
+      height: 750px;
+    }
   </style>
   <style>
-  #map_3 {
-    height: 750px;
-  }
+    #map_3 {
+      height: 750px;
+    }
   </style>
 
-  </style>
-  <!-- D3 -->
-  <script src="https://d3js.org/d3.v4.min.js"></script>
+</style>
+<!-- D3 -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="img/Personal_Emblem-Signature.png">
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="img/Personal_Emblem-Signature.png">
 
 </head>
 <body>
@@ -81,7 +81,7 @@
       <img class="six columns scale-with-grid quarter-bottom-rel" src="img/divvy_classic.png">
       <img class="six columns scale-with-grid quarter-bottom-rel" src="img/divvy_ebike.png">
     </div>
- </div>
+  </div>
 
   <div class="container one-bottom" >
     <div class="twelve columns">
@@ -113,19 +113,19 @@
 
   <div id="map_3" class="one-bottom"></div>
 
-<div class="container one-bottom" style="margin-top: 50px">
+  <div class="container one-bottom" style="margin-top: 50px">
     <div class="twelve columns">
       <h3>Conclusion</h3>
       <h5>As seen from the trip data in April 2021, the application of the dock-less e-bikes seems to have further strengthened the travel patterns of Chicago’s population as the trip concentrations are similar to the dock-based part of the network. This is only lightly supported here, however, due to the difference in location accuracy between the two sub-groups and how Divvy decided to arrange it spatially in the middle of their expansion phase. This system, however, has the potential, as time goes on, to be scrutinized for insight into the interactions between the application of a bikeshare system that utilized both station and stationless infrastructures.</h5>
     </div>
   </div>
 
-<div class="container one-bottom" >
+  <div class="container one-bottom" >
     <div class="row">
       <img class="six columns scale-with-grid quarter-bottom-rel" src="img/CDOT_logo.png">
       <img class="six columns scale-with-grid quarter-bottom-rel" src="img/Divvy_Logo.svg">
     </div>
- </div>
+  </div>
 
 
   <div class="container one-bottom" >
@@ -134,112 +134,85 @@
     <h5>David Knode is responsible for all maps, visualizations, texts, and imagry choice</h5>
     <h3>Data Sources</h3>
     <h5>All bike trip data is derived from public records from the Divvy bikeshare group
-    <a href="https://ride.divvybikes.com/system-data">(https://ride.divvybikes.com/system-data)</a>
+      <a href="https://ride.divvybikes.com/system-data">(https://ride.divvybikes.com/system-data)</a>
     </h5>
-   </div>
+  </div>
 
 
-<script>
+  <script>
 
-  L.mapbox.accessToken = 'pk.eyJ1IjoiZGltcCIsImEiOiJkRnlra3RjIn0.E9CTYzNUEx0yb3dcfV4SiA';
+    L.mapbox.accessToken = 'pk.eyJ1IjoiZGltcCIsImEiOiJkRnlra3RjIn0.E9CTYzNUEx0yb3dcfV4SiA';
 
-var data1;
-var data2;
-var data3;
+    var data;
 
-  d3.csv("data source/202104-divvy-tripdata.csv", function(data1) {
-    var data1 = data1
-    .filter(function(d){
-        return !(d.start_station_name==="" || d.end_station_name==="")
-      });
-     console.log(data1);
-    var map_1 = L.mapbox.map('map_1')
-    .setView([41.87, -87.65], 11)
-    .addLayer(L.mapbox.styleLayer('mapbox://styles/dknode/ckzfufu88001w14mrf4vcvshy'));
-    map_1.scrollWheelZoom.disable();
-
-    data1.forEach(function(station){
+    d3.csv("data source/202104-divvy-tripdata.csv", function(data1) {
+      var data = data1;
      
-      var path_options = {
-        radius :  2.5,
-        color : d3.rgb(255,0,0),
-        stroke: true,
-        weight : .75,
-        opacity : .5,
-        fillOpacity : 0.01
-      };
-      L.circleMarker([station.start_lat, station.start_lng], path_options).addTo(map_1);
-    });
-  });
+      console.log(data1);
 
-d3.csv("data source/202104-divvy-tripdata.csv", function(data2) {
-    var data2 = data2
-    .filter(function(d){
-        return (d.start_station_name==="" && d.end_station_name==="")
-      });
-     console.log(data2);
-    var map_2 = L.mapbox.map('map_2')
-    .setView([41.87, -87.65], 11)
-    .addLayer(L.mapbox.styleLayer('mapbox://styles/dknode/ckzfufu88001w14mrf4vcvshy'));
-    map_2.scrollWheelZoom.disable();
+      var map_1 = L.mapbox.map('map_1')
+      .setView([41.87, -87.65], 11)
+      .addLayer(L.mapbox.styleLayer('mapbox://styles/dknode/ckzfufu88001w14mrf4vcvshy'));
+      map_1.scrollWheelZoom.disable();
 
-    data2.forEach(function(station){
-     
-      var path_options = {
-        radius :  7,
-        color : d3.rgb(0,0,255),
-        stroke: false,
-        weight : 1,
-        opacity : .5,
-        fillOpacity : 0.02
-      };
-      L.circleMarker([station.start_lat, station.start_lng], path_options).addTo(map_2);
-    });
-  });
+      var map_2 = L.mapbox.map('map_2')
+      .setView([41.87, -87.65], 11)
+      .addLayer(L.mapbox.styleLayer('mapbox://styles/dknode/ckzfufu88001w14mrf4vcvshy'));
+      map_2.scrollWheelZoom.disable();
 
-d3.csv("data source/202104-divvy-tripdata.csv", function(data3) {
-    var data1 = data3
-    .filter(function(d){
-        return !(d.start_station_name==="" || d.end_station_name==="")
+      var map_3 = L.mapbox.map('map_3')
+      .setView([41.87, -87.65], 11)
+      .addLayer(L.mapbox.styleLayer('mapbox://styles/dknode/ckzfufu88001w14mrf4vcvshy'));
+      map_3.scrollWheelZoom.disable();
+
+      var path_options1 = {
+          radius :  2.5,
+          color : d3.rgb(255,0,0),
+          stroke: true,
+          weight : .75,
+          opacity : .5,
+          fillOpacity : 0.01
+        };
+        var path_options2 = {
+          radius :  7,
+          color : d3.rgb(0,0,255),
+          stroke: false,
+          weight : 1,
+          opacity : .5,
+          fillOpacity : 0.02
+        };
+        var path_options3 = {
+          radius :  2.5,
+          color : d3.rgb(255,0,0),
+          stroke: true,
+          weight : .5,
+          opacity : .5,
+          fillOpacity : 0.05
+        };
+        var path_options4 = {
+          radius :  7,
+          color : d3.rgb(0,0,255),
+          stroke: false,
+          weight : 1,
+          opacity : .5,
+          fillOpacity : 0.05
+        };
+
+      data1.forEach(function(station){
+
+        if (!(station.start_station_name==="" || station.end_station_name==="")){
+          L.circleMarker([station.start_lat, station.start_lng], path_options1).addTo(map_1);
+          L.circleMarker([station.start_lat, station.start_lng], path_options3).addTo(map_3);
+        }
+        if (station.start_station_name==="" && station.end_station_name===""){
+          L.circleMarker([station.start_lat, station.start_lng], path_options2).addTo(map_2);
+          L.circleMarker([station.start_lat, station.start_lng], path_options4).addTo(map_3);
+        } 
+
       });
-     console.log(data1);
-     var data2 = data3
-    .filter(function(d){
-        return (d.start_station_name==="" && d.end_station_name==="")
-      });
-     console.log(data2);
-    console.log(data3);
-    var map_3 = L.mapbox.map('map_3')
-    .setView([41.87, -87.65], 11)
-    .addLayer(L.mapbox.styleLayer('mapbox://styles/dknode/ckzfufu88001w14mrf4vcvshy'));
-    map_3.scrollWheelZoom.disable();
-//
-    data1.forEach(function(station){
-     
-      var path_options = {
-        radius :  2.5,
-        color : d3.rgb(255,0,0),
-        stroke: true,
-        weight : .5,
-        opacity : .5,
-        fillOpacity : 0.05
-      };
-      L.circleMarker([station.start_lat, station.start_lng], path_options).addTo(map_3);
-    });
-//
-    data2.forEach(function(station){
-     
-      var path_options = {
-        radius :  7,
-        color : d3.rgb(0,0,255),
-        stroke: false,
-        weight : 1,
-        opacity : .5,
-        fillOpacity : 0.05
-      };
-      L.circleMarker([station.start_lat, station.start_lng], path_options).addTo(map_3);
-    });
-  });
+
+
+});
 
 </script>
 
