@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs–– -->
+  <meta charset="utf-8">
+  <title>Chicago Bikeshare: Station vs Nonstation</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/customize.css">
+<script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
+  <style>
+  #map_1 {
+    height: 750px;
+  }
+  </style>
+  <style>
+  #map_2 {
+    height: 750px;
+  }
+  </style>
+  <style>
+  #map_3 {
+    height: 750px;
+  }
+  </style>
+
+  </style>
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/Personal_Emblem-Signature.png">
+
+</head>
+<body>
+
+  <div class="container one-bottom" style="margin-top: 50px">
+    <div class="ten columns">
+      <h2>Chicago Bikeshare: Station vs Nonstation</h2>
+      <p>
+        Mobility on Demand Systems: Data-Driven Analysis, Simulation, Visualization
+        <br>
+        ARCH 6306/6050, DSBA 6010, ITIS 8010/6010: Wednesdays 6pm-8:30pm, Hybrid Taught
+        <br>
+        Team: David Knode
+        <br>
+        Advisor: Dr. Dimitris Papanikolaou | dpapanik@uncc.edu | Urban Synergetics Lab | https://urbansynergeticslab.net
+      </p>
+    </div>
+    <div class="two columns">
+      <a href="https://urbansynergeticslab.net/"><img class="scale-with-grid" src="img/LabLogo_dark_cropped.png"></a>
+    </div>
+  </div>
+
+
+  <div class="container one-bottom" style="margin-top: 50px">
+    <div class="twelve columns">
+      <h3>Introduction</h3>
+      <h5>Chicago’s bike share system, Divvy started in 2013 with 750 bicycles and 75 stations in the city’s downtown while as of today operates around 6000 bikes with 659 stations that serve all 50 wards of the metropolitan area and nearby city of Evanston, or at least that is their goal with their current expansion campaign. Owned by Chicago Department of Transportation and operated by a subsidiary of Lyft, Divvy is available at any time of night or day, every day of the year with pricing plans ranging from single ride intervals to annual membership passes.</h5>
+
+      <h5>This investigation follows up upon a decision Divvy made in their serve in 2021. In an effort to better serve their city, and amid global lockdown, it was decided to add an extension of dock-less e-bikes to the network to work alongside the dock-based system they had built and was maintaining up to that point. This is one of the few cases in the world where docked and dock-less bikes are being utilized in the same system in tandem, rather than in competition, so some questions tend to appear, and will be investigated further below. The data this investigation is based on is from April of 2021 due to the weather conditions in the month being favorable to bike use and temporal proximity to the implementation of the dock-less extension at the beginning of that year.</h5>
+    </div>
+  </div>
+
+  
+  <div class="container one-bottom" >
+    <div class="row">
+      <img class="six columns scale-with-grid quarter-bottom-rel" src="img/divvy_classic.png">
+      <img class="six columns scale-with-grid quarter-bottom-rel" src="img/divvy_ebike.png">
+    </div>
+ </div>
+
+  <div class="container one-bottom" >
+    <div class="twelve columns">
+      <h3>Mapping of Divvy Docking Stations</h3>
+      <h5>To start, below is mapped the locations of the bike stations which serve the dock-based portion of the network and is the foundation of the system currently. The network is most clustered in downtown, and it is seen that the most density of stations seems to be in the north and northwestern areas of the city, where the network began. The few station that have started to appear in the southern wards have been placed in an effort to expand Divvy’s influence in to all of the communities that call the Chicago home. Density of the markers on the map indicate the number of trips that were recorded having utilized the station, either as an arrival or departure, in April 2021.</h5>
+    </div>
+  </div>
+
+
+  <div id="map_1" class="one-bottom"></div>
+
+  <div class="container one-bottom" >
+    <div class="twelve columns">
+      <h3>Mapping of Dockless Bikes</h3>
+      <h5>Next is mapped the recorded locations of dock-less bikes in the network in the month of April. As above the density of each marker is representative of how many trips collectively left and arrived in that area. In this case it is correct to say area due to the precision in how Divvy records and tracks their dock-less bicycles. The locations of the dock-less are less accurate than the continuously steady location of the stations, so it seems Divvy made estimations of the locations for the sake of record. What this created was a regular grid in the city with concentrations of use that almost become more rigid than the dock-based system.</h5>
+    </div>
+  </div>
+
+
+  <div id="map_2" class="one-bottom"></div>
+
+  <div class="container one-bottom" >
+    <div class="twelve columns">
+      <h3>Mapping of Dockless Bikes Compared to Docking Stations</h3>
+      <h5>Below is both branches of the Divvy network, the dock-less in blue and the dock-based in red, shown together for comparison. The grouping of stations, along with the density of the stations’ markers seems to coincide with the density pattern of the dock-less trips in the network. As stated before, this data is derived from trips in April of 2021 and reference transactions with users at each recorded location.</h5>
+    </div>
+  </div>
+
+
+  <div id="map_3" class="one-bottom"></div>
+
+<div class="container one-bottom" style="margin-top: 50px">
+    <div class="twelve columns">
+      <h3>Conclusion</h3>
+      <h5>As seen from the trip data in April 2021, the application of the dock-less e-bikes seems to have further strengthened the travel patterns of Chicago’s population as the trip concentrations are similar to the dock-based part of the network. This is only lightly supported here, however, due to the difference in location accuracy between the two sub-groups and how Divvy decided to arrange it spatially in the middle of their expansion phase. This system, however, has the potential, as time goes on, to be scrutinized for insight into the interactions between the application of a bikeshare system that utilized both station and stationless infrastructures.</h5>
+    </div>
+  </div>
+
+<div class="container one-bottom" >
+    <div class="row">
+      <img class="six columns scale-with-grid quarter-bottom-rel" src="img/CDOT_logo.png">
+      <img class="six columns scale-with-grid quarter-bottom-rel" src="img/Divvy_Logo.svg">
+    </div>
+ </div>
+
+
+  <div class="container one-bottom" >
+    <h2>Team & Contributions</h2>
+    <h3>David Knode</h3>
+    <h5>David Knode is responsible for all maps, visualizations, texts, and imagry choice</h5>
+    <h3>Data Sources</h3>
+    <h5>All bike trip data is derived from public records from the Divvy bikeshare group
+    <a href="https://ride.divvybikes.com/system-data">(https://ride.divvybikes.com/system-data)</a>
+    </h5>
+   </div>
+
+
+<script>
+
+  L.mapbox.accessToken = 'pk.eyJ1IjoiZGltcCIsImEiOiJkRnlra3RjIn0.E9CTYzNUEx0yb3dcfV4SiA';
+
+var data1;
+var data2;
+var data3;
+
+  d3.csv("data source/202104-divvy-tripdata.csv", function(data1) {
+    var data1 = data1
+    .filter(function(d){
+        return !(d.start_station_name==="" || d.end_station_name==="")
+      });
+     console.log(data1);
+    var map_1 = L.mapbox.map('map_1')
+    .setView([41.87, -87.65], 11)
+    .addLayer(L.mapbox.styleLayer('mapbox://styles/dknode/ckzfufu88001w14mrf4vcvshy'));
+    map_1.scrollWheelZoom.disable();
+
+    data1.forEach(function(station){
+     
+      var path_options = {
+        radius :  2.5,
+        color : d3.rgb(255,0,0),
+        stroke: true,
+        weight : .75,
+        opacity : .5,
+        fillOpacity : 0.01
+      };
+      L.circleMarker([station.start_lat, station.start_lng], path_options).addTo(map_1);
+    });
+  });
+
+d3.csv("data source/202104-divvy-tripdata.csv", function(data2) {
+    var data2 = data2
+    .filter(function(d){
+        return (d.start_station_name==="" && d.end_station_name==="")
+      });
+     console.log(data2);
+    var map_2 = L.mapbox.map('map_2')
+    .setView([41.87, -87.65], 11)
+    .addLayer(L.mapbox.styleLayer('mapbox://styles/dknode/ckzfufu88001w14mrf4vcvshy'));
+    map_2.scrollWheelZoom.disable();
+
+    data2.forEach(function(station){
+     
+      var path_options = {
+        radius :  7,
+        color : d3.rgb(0,0,255),
+        stroke: false,
+        weight : 1,
+        opacity : .5,
+        fillOpacity : 0.02
+      };
+      L.circleMarker([station.start_lat, station.start_lng], path_options).addTo(map_2);
+    });
+  });
+
+d3.csv("data source/202104-divvy-tripdata.csv", function(data3) {
+    var data1 = data3
+    .filter(function(d){
+        return !(d.start_station_name==="" || d.end_station_name==="")
+      });
+     console.log(data1);
+     var data2 = data3
+    .filter(function(d){
+        return (d.start_station_name==="" && d.end_station_name==="")
+      });
+     console.log(data2);
+    console.log(data3);
+    var map_3 = L.mapbox.map('map_3')
+    .setView([41.87, -87.65], 11)
+    .addLayer(L.mapbox.styleLayer('mapbox://styles/dknode/ckzfufu88001w14mrf4vcvshy'));
+    map_3.scrollWheelZoom.disable();
+//
+    data1.forEach(function(station){
+     
+      var path_options = {
+        radius :  2.5,
+        color : d3.rgb(255,0,0),
+        stroke: true,
+        weight : .5,
+        opacity : .5,
+        fillOpacity : 0.05
+      };
+      L.circleMarker([station.start_lat, station.start_lng], path_options).addTo(map_3);
+    });
+//
+    data2.forEach(function(station){
+     
+      var path_options = {
+        radius :  7,
+        color : d3.rgb(0,0,255),
+        stroke: false,
+        weight : 1,
+        opacity : .5,
+        fillOpacity : 0.05
+      };
+      L.circleMarker([station.start_lat, station.start_lng], path_options).addTo(map_3);
+    });
+  });
+
+</script>
+
+</body>
+</html>
