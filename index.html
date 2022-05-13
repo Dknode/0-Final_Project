@@ -203,12 +203,12 @@
       data1.forEach(function(station){
 
         if (!(station.start_station_name==="" || station.end_station_name==="")){
-          L.circleMarker([station.start_lat.toFixed(2), station.start_lng.toFixed(2)], path_options1).addTo(map_1);
-          L.circleMarker([station.start_lat.toFixed(2), station.start_lng.toFixed(2)], path_options3).addTo(map_3);
+          L.circleMarker([station.start_lat, station.start_lng], path_options1).addTo(map_1);
+          L.circleMarker([station.start_lat, station.start_lng], path_options3).addTo(map_3);
         }
         if (station.start_station_name==="" && station.end_station_name===""){
-          L.circleMarker([station.start_lat.toFixed(2), station.start_lng.toFixed(2)], path_options2).addTo(map_2);
-          L.circleMarker([station.start_lat.toFixed(2), station.start_lng.toFixed(2)], path_options4).addTo(map_3);
+          L.circleMarker([station.start_lat, station.start_lng], path_options2).addTo(map_2);
+          L.circleMarker([station.start_lat, station.start_lng], path_options4).addTo(map_3);
         } 
 
       });
